@@ -207,24 +207,28 @@ defmodule Nimrag.Credentials do
     cond do
       password = System.get_env("NIMRAG_PASSWORD") ->
         password
+        |> String.trim()
 
       password_file = System.get_env("NIMRAG_PASSWORD_FILE") ->
         password_file
         |> Path.expand()
         |> File.read!()
+        |> String.trim()
 
       password_cmd = System.get_env("NIMRAG_PASSWORD_COMMAND") ->
         [cmd | args] = String.split(password_cmd, " ", trim: true)
 
         case System.cmd(cmd, args) do
           {output, 0} ->
-            output
+            output |> String.trim()
 
           _ ->
             raise "Failed to execute password command: cmd=#{cmd} args=#{inspect(args)}"
         end
+
+      true ->
+        nil
     end
-    |> String.trim()
   end
 
   @doc false
