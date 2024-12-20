@@ -87,7 +87,7 @@ defmodule Nimrag do
   """
   @spec last_activity(Client.t()) :: {:ok, Api.ActivityList.t(), Client.t()} | error()
   def last_activity(client) do
-    case activities(client, 0, 1) do
+    case activities(client, offset: 0, limit: 1) do
       {:ok, [], _client} -> {:error, :not_found}
       {:ok, [activity | _], client} -> {:ok, activity, client}
       result -> result
@@ -120,19 +120,35 @@ defmodule Nimrag do
   @doc """
   Gets activities
   """
-  @spec activities(Client.t()) :: {:ok, list(Api.ActivityList.t()), Client.t()} | error()
-  @spec activities(Client.t(), offset :: integer()) ::
+  @type activities_opt ::
+          {:offset, integer()}
+          | {:limit, integer()}
+          | {:start_date, Date.t()}
+          | {:end_date, Date.t()}
+          | {:ascending, bool()}
+          | {:activity_type, String.t()}
+
+  @spec activities(Client.t(), [activities_opt]) ::
           {:ok, list(Api.ActivityList.t()), Client.t()} | error()
-  @spec activities(Client.t(), offset :: integer(), limit :: integer()) ::
-          {:ok, list(Api.ActivityList.t()), Client.t()} | error()
-  def activities(client, offset \\ 0, limit \\ 10) when is_integer(offset) and is_integer(limit) do
-    client |> activities_req(offset, limit) |> response_as_data(Api.ActivityList)
+  def activities(client, opts \\ []) do
+    client
+    |> activities_req(Keyword.merge([offset: 0, limit: 10], opts))
+    |> response_as_data(Api.ActivityList)
   end
 
-  def activities_req(client, offset, limit) do
+  defp activities_param({:start_date, d}), do: {:startDate, Date.to_iso8601(d)}
+  defp activities_param({:end_date, d}), do: {:endDate, Date.to_iso8601(d)}
+  defp activities_param({:ascending, true}), do: {:sortOrder, "asc"}
+  defp activities_param({:ascending, _}), do: {:sortOrder, "desc"}
+  defp activities_param({:activity_type, type}), do: {:activityType, type}
+  defp activities_param({k, v}), do: {k, v}
+
+  def activities_req(client, opts) do
+    params = Enum.map(opts, &activities_param/1) |> IO.inspect()
+
     get(client,
       url: "/activitylist-service/activities/search/activities",
-      params: [limit: limit, start: offset]
+      params: params
     )
   end
 
