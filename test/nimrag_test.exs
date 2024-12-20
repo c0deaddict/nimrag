@@ -27,7 +27,7 @@ defmodule NimragTest do
       Req.Test.json(conn, read_response_fixture(conn))
     end)
 
-    assert {:ok, _activities, _client} = Nimrag.activities(client(), 0, 1)
+    assert {:ok, _activities, _client} = Nimrag.activities(client(), offset: 0, limit: 1)
   end
 
   test "#user_settings" do

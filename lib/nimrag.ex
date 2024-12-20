@@ -141,6 +141,7 @@ defmodule Nimrag do
   defp activities_param({:ascending, true}), do: {:sortOrder, "asc"}
   defp activities_param({:ascending, _}), do: {:sortOrder, "desc"}
   defp activities_param({:activity_type, type}), do: {:activityType, type}
+  defp activities_param({:offset, offset}), do: {:start, offset}
   defp activities_param({k, v}), do: {k, v}
 
   def activities_req(client, opts) do
