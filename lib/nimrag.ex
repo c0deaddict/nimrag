@@ -145,11 +145,9 @@ defmodule Nimrag do
   defp activities_param({k, v}), do: {k, v}
 
   def activities_req(client, opts) do
-    params = Enum.map(opts, &activities_param/1) |> IO.inspect()
-
     get(client,
       url: "/activitylist-service/activities/search/activities",
-      params: params
+      params: Enum.map(opts, &activities_param/1)
     )
   end
 
