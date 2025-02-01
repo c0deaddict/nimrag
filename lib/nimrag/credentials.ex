@@ -77,24 +77,24 @@ defmodule Nimrag.Credentials do
   Reads previously stored OAuth tokens
   """
   @spec read_oauth_tokens! :: {OAuth1Token.t(), OAuth2Token.t()} | no_return
-  def read_oauth_tokens! do
-    {read_oauth1_token!(), read_oauth2_token!()}
+  def read_oauth_tokens!(config_path \\ config_fs_path()) do
+    {read_oauth1_token!(config_path), read_oauth2_token!(config_path)}
   end
 
   @doc """
   See `read_oauth1_token/0` for details.
   """
   @spec read_oauth1_token! :: OAuth1Token.t() | no_return
-  def read_oauth1_token! do
-    case read_oauth1_token() do
+  def read_oauth1_token!(config_path \\ config_fs_path()) do
+    case read_oauth1_token(config_path) do
       {:ok, oauth1_token} -> oauth1_token
       {:error, error} -> raise error
     end
   end
 
   @spec read_oauth2_token! :: OAuth2Token.t() | no_return
-  def read_oauth2_token! do
-    case read_oauth2_token() do
+  def read_oauth2_token!(config_path \\ config_fs_path()) do
+    case read_oauth2_token(config_path) do
       {:ok, oauth2_token} -> oauth2_token
       {:error, error} -> raise error
     end
@@ -106,8 +106,8 @@ defmodule Nimrag.Credentials do
   See `Nimrag.Auth` for more details on how to obtain auth tokens.
   """
   @spec read_oauth1_token :: {:ok, OAuth1Token.t()} | {:error, String.t()}
-  def read_oauth1_token do
-    read_oauth_token(:oauth1_token, fn data ->
+  def read_oauth1_token(config_path \\ config_fs_path()) do
+    read_oauth_token(config_path, :oauth1_token, fn data ->
       {:ok, expires_at, 0} = DateTime.from_iso8601(data["expires_at"])
 
       %OAuth1Token{
@@ -126,8 +126,8 @@ defmodule Nimrag.Credentials do
   See `Nimrag.Auth` for more details on how to obtain auth tokens.
   """
   @spec read_oauth2_token :: {:ok, OAuth2Token.t()} | {:error, String.t()}
-  def read_oauth2_token do
-    read_oauth_token(:oauth2_token, fn data ->
+  def read_oauth2_token(config_path \\ config_fs_path()) do
+    read_oauth_token(config_path, :oauth2_token, fn data ->
       {:ok, expires_at, 0} = DateTime.from_iso8601(data["expires_at"])
       {:ok, refresh_token_expires_at, 0} = DateTime.from_iso8601(data["refresh_token_expires_at"])
 
@@ -143,21 +143,21 @@ defmodule Nimrag.Credentials do
     end)
   end
 
-  defp read_oauth_token(key, to_struct_mapper) do
-    case read_fs_oauth_token(key, to_struct_mapper) do
+  defp read_oauth_token(config_path, key, to_struct_mapper) do
+    case read_fs_oauth_token(config_path, key, to_struct_mapper) do
       nil ->
-        {:error, "No #{key}.json found."}
+        {:error, "No #{key}.json found in #{config_path}."}
 
       oauth_token ->
         {:ok, oauth_token}
     end
   end
 
-  defp read_fs_oauth_token(key, to_struct_mapper) do
-    token_fs_path = Path.join(config_fs_path(), "#{key}.json")
+  defp read_fs_oauth_token(config_path, key, to_struct_mapper) do
+    token_fs_path = Path.join(config_path, "#{key}.json")
 
     with {:ok, data} <- File.read(token_fs_path),
-         {:ok, token} <- decode_json(data, "Invalid JSON in #{key}.json") do
+         {:ok, token} <- decode_json(data, "Invalid JSON in #{token_fs_path}.json") do
       to_struct_mapper.(token)
     else
       _ ->
@@ -170,11 +170,15 @@ defmodule Nimrag.Credentials do
 
   You only need to call this after initial login with `Nimrag.Auth`.
   """
-  def write_fs_oauth1_token(%Client{oauth1_token: token}), do: write_fs_oauth1_token(token)
+  def write_fs_oauth1_token(_token, config_path \\ config_fs_path())
 
   @doc false
-  def write_fs_oauth1_token(%OAuth1Token{} = token),
-    do: write_fs_oauth_token(:oauth1_token, token)
+  def write_fs_oauth1_token(%Client{oauth1_token: token}, config_path),
+    do: write_fs_oauth1_token(token, config_path)
+
+  @doc false
+  def write_fs_oauth1_token(%OAuth1Token{} = token, config_path),
+    do: write_fs_oauth_token(:oauth1_token, token, config_path)
 
   @doc """
   Writes currently used OAuth2 token to `{{config_path}}/oauth2_token.json`
@@ -182,14 +186,18 @@ defmodule Nimrag.Credentials do
   You should call it after initial login with `Nimrag.Auth`, and each session
   otherwise this token will have to be refreshed very often.
   """
-  def write_fs_oauth2_token(%Client{oauth2_token: token}), do: write_fs_oauth2_token(token)
+  def write_fs_oauth2_token(_token, config_path \\ config_fs_path())
 
   @doc false
-  def write_fs_oauth2_token(%OAuth2Token{} = token),
-    do: write_fs_oauth_token(:oauth2_token, token)
+  def write_fs_oauth2_token(%Client{oauth2_token: token}, config_path),
+    do: write_fs_oauth2_token(token, config_path)
 
-  defp write_fs_oauth_token(key, token) do
-    path = Path.join(config_fs_path(), "#{key}.json")
+  @doc false
+  def write_fs_oauth2_token(%OAuth2Token{} = token, config_path),
+    do: write_fs_oauth_token(:oauth2_token, token, config_path)
+
+  defp write_fs_oauth_token(key, token, config_path) do
+    path = Path.join(config_path, "#{key}.json")
 
     with {:ok, data} = Jason.encode(token, pretty: true),
          _ <- Logger.debug(fn -> ["writing ", path] end),
