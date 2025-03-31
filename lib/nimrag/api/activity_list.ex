@@ -46,7 +46,7 @@ defmodule Nimrag.Api.ActivityList do
       optional(field(:elevation_loss)) => nullable(float()),
       field(:activity_type) => ActivityType.schematic(),
       optional(field(:location_name)) => nullable(str()),
-      field(:steps) => nullable(int()),
+      optional(field(:steps)) => nullable(int()),
       field(:calories) => float(),
       optional(field(:start_latitude)) => nullable(float()),
       optional(field(:start_longitude)) => nullable(float()),
