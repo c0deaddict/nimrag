@@ -37,7 +37,7 @@ defmodule Nimrag.Api.ActivityList do
       {"startTimeLocal", :start_local_at} => naive_datetime(),
       field(:activity_id) => int(),
       field(:activity_name) => str(),
-      field(:description) => nullable(str()),
+      optional(field(:description)) => nullable(str()),
       field(:distance) => float(),
       field(:duration) => float(),
       {"averageHR", :average_hr} => nullable(float()),
