@@ -42,16 +42,16 @@ defmodule Nimrag.Api.ActivityList do
       field(:duration) => float(),
       {"averageHR", :average_hr} => nullable(float()),
       {"maxHR", :max_hr} => nullable(float()),
-      field(:elevation_gain) => nullable(float()),
-      field(:elevation_loss) => nullable(float()),
+      optional(field(:elevation_gain)) => nullable(float()),
+      optional(field(:elevation_loss)) => nullable(float()),
       field(:activity_type) => ActivityType.schematic(),
-      field(:location_name) => nullable(str()),
+      optional(field(:location_name)) => nullable(str()),
       field(:steps) => nullable(int()),
       field(:calories) => float(),
-      field(:start_latitude) => nullable(float()),
-      field(:start_longitude) => nullable(float()),
-      field(:end_latitude) => nullable(float()),
-      field(:end_longitude) => nullable(float())
+      optional(field(:start_latitude)) => nullable(float()),
+      optional(field(:start_longitude)) => nullable(float()),
+      optional(field(:end_latitude)) => nullable(float()),
+      optional(field(:end_longitude)) => nullable(float())
     })
   end
 end
