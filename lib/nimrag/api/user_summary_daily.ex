@@ -2,13 +2,13 @@ defmodule Nimrag.Api.UserSummaryDaily do
   use Nimrag.Api.Data
 
   @type t() :: %__MODULE__{
-          abnormal_heart_rate_alerts_count: integer(),
+          abnormal_heart_rate_alerts_count: nil | integer(),
           active_kilocalories: float(),
           active_seconds: integer(),
           average_stress_level: integer(),
           bmr_kilocalories: float(),
           calendar_date: String.t(),
-          floors_ascended: integer(),
+          floors_ascended: float(),
           floors_descended: float(),
           highly_active_seconds: integer(),
           max_heart_rate: integer(),
@@ -47,13 +47,13 @@ defmodule Nimrag.Api.UserSummaryDaily do
 
   def schematic() do
     schema(__MODULE__, %{
-      field(:abnormal_heart_rate_alerts_count) => int(),
+      field(:abnormal_heart_rate_alerts_count) => nullable(int()),
       field(:active_kilocalories) => float(),
       field(:active_seconds) => int(),
       field(:average_stress_level) => int(),
       field(:bmr_kilocalories) => float(),
       field(:calendar_date) => date(),
-      field(:floors_ascended) => int(),
+      field(:floors_ascended) => float(),
       field(:floors_descended) => float(),
       field(:highly_active_seconds) => int(),
       field(:max_heart_rate) => int(),
