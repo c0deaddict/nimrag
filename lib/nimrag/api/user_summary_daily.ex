@@ -2,13 +2,68 @@ defmodule Nimrag.Api.UserSummaryDaily do
   use Nimrag.Api.Data
 
   @type t() :: %__MODULE__{
-          total_steps: integer()
+          abnormal_heart_rate_alerts_count: integer(),
+          active_kilocalories: float(),
+          active_seconds: integer(),
+          average_stress_level: integer(),
+          bmr_kilocalories: float(),
+          calendar_date: String.t(),
+          floors_ascended: integer(),
+          floors_descended: float(),
+          highly_active_seconds: integer(),
+          max_heart_rate: integer(),
+          measurable_awake_duration: integer(),
+          min_heart_rate: integer(),
+          moderate_intensity_minutes: integer(),
+          sedentary_seconds: integer(),
+          sleeping_seconds: integer(),
+          total_distance_meters: integer(),
+          total_kilocalories: float(),
+          total_steps: integer(),
+          vigorous_intensity_minutes: integer()
         }
 
-  defstruct ~w(total_steps)a
+  defstruct ~w(
+    abnormal_heart_rate_alerts_count
+    active_kilocalories
+    active_seconds
+    average_stress_level
+    bmr_kilocalories
+    calendar_date
+    floors_ascended
+    floors_descended
+    highly_active_seconds
+    max_heart_rate
+    measurable_awake_duration
+    min_heart_rate
+    moderate_intensity_minutes
+    sedentary_seconds
+    sleeping_seconds
+    total_distance_meters
+    total_kilocalories
+    total_steps
+    vigorous_intensity_minutes
+  )a
 
   def schematic() do
     schema(__MODULE__, %{
+      field(:abnormal_heart_rate_alerts_count) => int(),
+      field(:active_kilocalories) => float(),
+      field(:active_seconds) => int(),
+      field(:average_stress_level) => int(),
+      field(:bmr_kilocalories) => float(),
+      field(:calendar_date) => date(),
+      field(:floors_ascended) => int(),
+      field(:floors_descended) => float(),
+      field(:highly_active_seconds) => int(),
+      field(:max_heart_rate) => int(),
+      field(:measurable_awake_duration) => int(),
+      field(:min_heart_rate) => int(),
+      field(:moderate_intensity_minutes) => int(),
+      field(:sedentary_seconds) => int(),
+      field(:sleeping_seconds) => int(),
+      field(:total_distance_meters) => int(),
+      field(:total_kilocalories) => float(),
       field(:total_steps) => int()
     })
   end
