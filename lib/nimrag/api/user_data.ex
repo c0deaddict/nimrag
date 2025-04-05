@@ -3,6 +3,7 @@ defmodule Nimrag.Api.UserData do
 
   @type t() :: %__MODULE__{
           activity_level: nil | integer(),
+          available_training_days: [String.t()],
           birth_date: Date.t(),
           dive_number: nil | integer(),
           external_bottom_time: nil | float(),
@@ -12,13 +13,10 @@ defmodule Nimrag.Api.UserData do
           firstbeat_running_lt_timestamp: nil | integer(),
           ftp_auto_detected: nil | bool(),
           gender: String.t(),
-          available_training_days: [String.t()],
-          preferred_long_training_days: [String.t()],
           golf_distance_unit: String.t(),
           golf_elevation_unit: nil | String.t(),
           golf_speed_unit: nil | String.t(),
           handedness: String.t(),
-          # PowerFormat
           heart_rate_format: any(),
           height: float(),
           hydration_auto_goal_enabled: bool(),
@@ -29,16 +27,15 @@ defmodule Nimrag.Api.UserData do
           lactate_threshold_speed: nil | float(),
           measurement_system: String.t(),
           moderate_intensity_minutes_hr_zone: integer(),
-          # PowerFormat
           power_format: any(),
-          threshold_heart_rate_auto_detected: bool(),
+          preferred_long_training_days: [String.t()],
+          threshold_heart_rate_auto_detected: nil | bool(),
           time_format: String.t(),
           training_status_paused_date: nil | String.t(),
           vigorous_intensity_minutes_hr_zone: integer(),
           vo_2_max_cycling: nil | float(),
           vo_2_max_running: nil | float(),
-          # | WeatherLocation.t()
-          weather_location: any(),
+          weather_location: Api.WeatherLocation.t(),
           weight: nil | float()
         }
 
@@ -83,14 +80,11 @@ defmodule Nimrag.Api.UserData do
   def schematic() do
     schema(__MODULE__, %{
       field(:activity_level) => nullable(int()),
+      field(:available_training_days) => list(weekday()),
       field(:birth_date) => date(),
       field(:dive_number) => nullable(int()),
-      field(:available_training_days) =>
-        list(oneof(["WEDNESDAY", "MONDAY", "SUNDAY", "TUESDAY", "FRIDAY", "THURSDAY", "SATURDAY"])),
-      field(:preferred_long_training_days) =>
-        list(oneof(["WEDNESDAY", "MONDAY", "SUNDAY", "TUESDAY", "FRIDAY", "THURSDAY", "SATURDAY"])),
       field(:external_bottom_time) => nullable(float()),
-      # first_day_of_week: any(),
+      field(:first_day_of_week) => any(),
       field(:firstbeat_cycling_lt_timestamp) => nullable(int()),
       field(:firstbeat_max_stress_score) => nullable(float()),
       field(:firstbeat_running_lt_timestamp) => nullable(int()),
@@ -100,7 +94,7 @@ defmodule Nimrag.Api.UserData do
       field(:golf_elevation_unit) => nullable(str()),
       field(:golf_speed_unit) => nullable(str()),
       field(:handedness) => str(),
-      # heart_rate_format: any(), # PowerFormat
+      field(:heart_rate_format) => any(),
       field(:height) => float(),
       field(:hydration_auto_goal_enabled) => bool(),
       field(:hydration_containers) => list(Api.HydrationContainer.schematic()),
@@ -110,14 +104,15 @@ defmodule Nimrag.Api.UserData do
       field(:lactate_threshold_speed) => nullable(float()),
       field(:measurement_system) => str(),
       field(:moderate_intensity_minutes_hr_zone) => int(),
-      # power_format: any(),
-      field(:threshold_heart_rate_auto_detected) => bool(),
+      field(:power_format) => any(),
+      field(:preferred_long_training_days) => list(weekday()),
+      field(:threshold_heart_rate_auto_detected) => nullable(bool()),
       field(:time_format) => str(),
       field(:training_status_paused_date) => nullable(str()),
       field(:vigorous_intensity_minutes_hr_zone) => int(),
-      # field(:vo_2_max_cycling) => nullable(float()),
-      # field(:vo_2_max_running) => nullable(float()),
-      # weather_location: any()
+      field(:vo_2_max_cycling) => nullable(float()),
+      field(:vo_2_max_running) => nullable(float()),
+      field(:weather_location) => Api.WeatherLocation.schematic(),
       field(:weight) => nullable(float())
     })
   end

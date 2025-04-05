@@ -15,6 +15,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
           body_battery_charged_value: nil | integer(),
           body_battery_drained_value: nil | integer(),
           body_battery_during_sleep: nil | integer(),
+          body_battery_dynamic_feedback_event: any(), # TODO type
           body_battery_highest_value: nil | integer(),
           body_battery_lowest_value: nil | integer(),
           body_battery_most_recent_value: nil | integer(),
@@ -65,6 +66,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
           rest_stress_percentage: float(),
           resting_calories_from_activity: nil | float(),
           resting_heart_rate: integer(),
+          rule: any(), # TODO type
           sedentary_seconds: integer(),
           sleeping_seconds: integer(),
           source: String.t(),
@@ -106,6 +108,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
     body_battery_charged_value
     body_battery_drained_value
     body_battery_during_sleep
+    body_battery_dynamic_feedback_event
     body_battery_highest_value
     body_battery_lowest_value
     body_battery_most_recent_value
@@ -156,6 +159,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
     rest_stress_percentage
     resting_calories_from_activity
     resting_heart_rate
+    rule
     sedentary_seconds
     sleeping_seconds
     source
@@ -198,6 +202,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
       field(:body_battery_charged_value) => nullable(int()),
       field(:body_battery_drained_value) => nullable(int()),
       field(:body_battery_during_sleep) => nullable(int()),
+      field(:body_battery_dynamic_feedback_event) => any(),
       field(:body_battery_highest_value) => nullable(int()),
       field(:body_battery_lowest_value) => nullable(int()),
       field(:body_battery_most_recent_value) => nullable(int()),
@@ -248,6 +253,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
       field(:rest_stress_percentage) => float(),
       field(:resting_calories_from_activity) => nullable(float()),
       field(:resting_heart_rate) => int(),
+      field(:rule) => any(),
       field(:sedentary_seconds) => int(),
       field(:sleeping_seconds) => int(),
       field(:source) => str(),

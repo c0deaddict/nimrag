@@ -144,6 +144,18 @@ defmodule Nimrag.Api.Data do
     )
   end
 
+  def weekday(),
+    do:
+      oneof([
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY"
+      ])
+
   def field(field) when is_atom(field),
     do: {
       field |> to_string() |> Recase.to_camel(),
