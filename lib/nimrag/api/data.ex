@@ -62,7 +62,7 @@ defmodule Nimrag.Api.Data do
           DateTime.to_naive(dt)
 
         v, :from ->
-          DateTime.from_naive(v, "Etc/UTC")
+          DateTime.from_naive!(v, "Etc/UTC")
           |> DateTime.to_unix(:millisecond)
       end
     )
@@ -90,7 +90,7 @@ defmodule Nimrag.Api.Data do
       fn
         i, :to ->
           is_binary(i) and
-            match?({:ok, _}, NaiveDateTime.from_iso8601(i) |> DateTime.from_naive!("Etc/UTC"))
+            match?({:ok, _}, NaiveDateTime.from_iso8601!(i) |> DateTime.from_naive("Etc/UTC"))
 
         i, :from ->
           match?(%NaiveDateTime{}, i)

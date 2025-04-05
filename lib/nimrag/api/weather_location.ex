@@ -2,12 +2,12 @@ defmodule Nimrag.Api.WeatherLocation do
   use Nimrag.Api.Data
 
   @type t() :: %__MODULE__{
-          iso_country_code: String.t(),
-          latitude: float(),
-          longitude: float(),
-          location_name: String.t(),
-          postal_code: String.t(),
-          use_fixed_location: bool(),
+          iso_country_code: nil | String.t(),
+          latitude: nil | float(),
+          longitude: nil | float(),
+          location_name: nil | String.t(),
+          postal_code: nil | String.t(),
+          use_fixed_location: nil | bool()
         }
 
   defstruct ~w(
@@ -21,12 +21,12 @@ defmodule Nimrag.Api.WeatherLocation do
 
   def schematic() do
     schema(__MODULE__, %{
-      field(:iso_country_code) => str(),
-      field(:latitude) => float(),
-      field(:longitude) => float(),
-      field(:location_name) => str(),
-      field(:postal_code) => str(),
-      field(:use_fixed_location) => bool()
+      field(:iso_country_code) => nullable(str()),
+      field(:latitude) => nullable(float()),
+      field(:longitude) => nullable(float()),
+      field(:location_name) => nullable(str()),
+      field(:postal_code) => nullable(str()),
+      field(:use_fixed_location) => nullable(bool())
     })
   end
 end

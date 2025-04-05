@@ -15,7 +15,8 @@ defmodule Nimrag.Api.UserSummaryDaily do
           body_battery_charged_value: nil | integer(),
           body_battery_drained_value: nil | integer(),
           body_battery_during_sleep: nil | integer(),
-          body_battery_dynamic_feedback_event: any(), # TODO type
+          # TODO type
+          body_battery_dynamic_feedback_event: any(),
           body_battery_highest_value: nil | integer(),
           body_battery_lowest_value: nil | integer(),
           body_battery_most_recent_value: nil | integer(),
@@ -66,7 +67,8 @@ defmodule Nimrag.Api.UserSummaryDaily do
           rest_stress_percentage: float(),
           resting_calories_from_activity: nil | float(),
           resting_heart_rate: integer(),
-          rule: any(), # TODO type
+          # TODO type
+          rule: any(),
           sedentary_seconds: integer(),
           sleeping_seconds: integer(),
           source: String.t(),
@@ -226,7 +228,8 @@ defmodule Nimrag.Api.UserSummaryDaily do
       field(:intensity_minutes_goal) => int(),
       field(:last_seven_days_avg_resting_heart_rate) => int(),
       {"lastSyncTimestampGMT", :last_sync_timestamp_gmt} => nullable(gmt_datetime_as_datetime()),
-      {"latestRespirationTimeGMT", :latest_respiration_time_gmt} => nullable(gmt_datetime_as_datetime()),
+      {"latestRespirationTimeGMT", :latest_respiration_time_gmt} =>
+        nullable(gmt_datetime_as_datetime()),
       field(:latest_respiration_value) => nullable(float()),
       field(:latest_spo2) => nullable(float()),
       {"latestSpo2ReadingTimeGMT", :latest_spo2_reading_time_gmt} => nullable(float()),
@@ -278,7 +281,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
       field(:wellness_end_time_local) => naive_datetime(),
       field(:wellness_kilocalories) => float(),
       field(:wellness_start_time_gmt) => gmt_datetime_as_datetime(),
-      field(:wellness_start_time_local) => naive_datetime(),
+      field(:wellness_start_time_local) => naive_datetime()
     })
   end
 end
