@@ -10,6 +10,7 @@ defmodule Nimrag.Api.Data do
     quote do
       import Nimrag.Api.Data
       import Schematic
+      use SchematicStruct
 
       alias Nimrag.Api
 
@@ -42,7 +43,8 @@ defmodule Nimrag.Api.Data do
 
         i, :from ->
           DateTime.to_unix(i, :millisecond)
-      end
+      end,
+      message: "invalid datetime"
     )
   end
 
@@ -64,7 +66,8 @@ defmodule Nimrag.Api.Data do
         v, :from ->
           DateTime.from_naive!(v, "Etc/UTC")
           |> DateTime.to_unix(:millisecond)
-      end
+      end,
+      message: "invalid timestamp"
     )
   end
 
@@ -81,7 +84,8 @@ defmodule Nimrag.Api.Data do
 
         i, :from ->
           NaiveDateTime.to_iso8601(i)
-      end
+      end,
+      message: "invalid naive datetime"
     )
   end
 
@@ -102,7 +106,8 @@ defmodule Nimrag.Api.Data do
 
         i, :from ->
           DateTime.to_iso8601(i)
-      end
+      end,
+      message: "invalid timestamp"
     )
   end
 
@@ -123,7 +128,8 @@ defmodule Nimrag.Api.Data do
 
         i, :from ->
           DateTime.to_iso8601(i)
-      end
+      end,
+      message: "invalid datetime"
     )
   end
 
@@ -140,7 +146,8 @@ defmodule Nimrag.Api.Data do
 
         i, :from ->
           Date.to_iso8601(i)
-      end
+      end,
+      message: "invalid date"
     )
   end
 

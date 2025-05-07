@@ -1,202 +1,68 @@
 defmodule Nimrag.Api.Profile do
   use Nimrag.Api.Data
 
-  @type t() :: %__MODULE__{
-          id: integer(),
-          profile_id: integer(),
-          garmin_guid: String.t(),
-          display_name: String.t(),
-          full_name: String.t(),
-          user_name: String.t(),
-          profile_image_url_large: nil | String.t(),
-          profile_image_url_medium: nil | String.t(),
-          profile_image_url_small: nil | String.t(),
-          location: nil | String.t(),
-          facebook_url: nil | String.t(),
-          twitter_url: nil | String.t(),
-          personal_website: nil | String.t(),
-          motivation: nil | integer(),
-          bio: nil | String.t(),
-          primary_activity: nil | String.t(),
-          favorite_activity_types: list(String.t()),
-          running_training_speed: float(),
-          cycling_training_speed: float(),
-          favorite_cycling_activity_types: list(String.t()),
-          cycling_classification: String.t(),
-          cycling_max_avg_power: float(),
-          swimming_training_speed: float(),
-          profile_visibility: String.t(),
-          activity_start_visibility: String.t(),
-          activity_map_visibility: String.t(),
-          course_visibility: String.t(),
-          activity_heart_rate_visibility: String.t(),
-          activity_power_visibility: String.t(),
-          badge_visibility: String.t(),
-          show_age: boolean(),
-          show_weight: boolean(),
-          show_height: boolean(),
-          show_weight_class: boolean(),
-          show_age_range: boolean(),
-          show_gender: boolean(),
-          show_activity_class: boolean(),
-          show_vo_2_max: boolean(),
-          show_personal_records: boolean(),
-          show_last_12_months: boolean(),
-          show_lifetime_totals: boolean(),
-          show_upcoming_events: boolean(),
-          show_recent_favorites: boolean(),
-          show_recent_device: boolean(),
-          show_recent_gear: boolean(),
-          show_badges: boolean(),
-          other_activity: nil | String.t(),
-          other_primary_activity: String.t(),
-          other_motivation: String.t(),
-          user_roles: list(String.t()),
-          name_approved: boolean(),
-          user_profile_full_name: String.t(),
-          make_golf_scorecards_private: boolean(),
-          allow_golf_live_scoring: boolean(),
-          allow_golf_scoring_by_connections: boolean(),
-          user_level: integer(),
-          user_point: integer(),
-          level_update_date: String.t(),
-          level_is_viewed: boolean(),
-          level_point_threshold: integer(),
-          user_point_offset: integer(),
-          user_pro: boolean()
-        }
-
-  @fields [
-    :activity_heart_rate_visibility,
-    :activity_map_visibility,
-    :activity_power_visibility,
-    :activity_start_visibility,
-    :allow_golf_live_scoring,
-    :allow_golf_scoring_by_connections,
-    :badge_visibility,
-    :bio,
-    :course_visibility,
-    :cycling_classification,
-    :cycling_max_avg_power,
-    :cycling_training_speed,
-    :display_name,
-    :facebook_url,
-    :favorite_activity_types,
-    :favorite_cycling_activity_types,
-    :full_name,
-    :garmin_guid,
-    :id,
-    :level_is_viewed,
-    :level_point_threshold,
-    :level_update_date,
-    :location,
-    :make_golf_scorecards_private,
-    :motivation,
-    :name_approved,
-    :other_activity,
-    :other_motivation,
-    :other_primary_activity,
-    :personal_website,
-    :primary_activity,
-    :profile_id,
-    :profile_image_url_large,
-    :profile_image_url_medium,
-    :profile_image_url_small,
-    :profile_visibility,
-    :running_training_speed,
-    :show_activity_class,
-    :show_age,
-    :show_age_range,
-    :show_badges,
-    :show_gender,
-    :show_height,
-    :show_last_12_months,
-    :show_lifetime_totals,
-    :show_personal_records,
-    :show_recent_device,
-    :show_recent_favorites,
-    :show_recent_gear,
-    :show_upcoming_events,
-    :show_vo_2_max,
-    :show_weight,
-    :show_weight_class,
-    :swimming_training_speed,
-    :twitter_url,
-    :user_level,
-    :user_name,
-    :user_point,
-    :user_point_offset,
-    :user_pro,
-    :user_profile_full_name,
-    :user_roles
-  ]
-
-  defstruct @fields
-
-  def schematic() do
-    schema(__MODULE__, %{
-      field(:activity_heart_rate_visibility) => str(),
-      field(:activity_map_visibility) => str(),
-      field(:activity_power_visibility) => str(),
-      field(:activity_start_visibility) => str(),
-      field(:allow_golf_live_scoring) => bool(),
-      field(:allow_golf_scoring_by_connections) => bool(),
-      field(:badge_visibility) => str(),
-      field(:bio) => nullable(str()),
-      field(:course_visibility) => str(),
-      field(:cycling_classification) => nullable(str()),
-      field(:cycling_max_avg_power) => float(),
-      field(:cycling_training_speed) => float(),
-      field(:display_name) => str(),
-      field(:facebook_url) => nullable(str()),
-      field(:favorite_activity_types) => list(str()),
-      field(:favorite_cycling_activity_types) => list(str()),
-      field(:full_name) => str(),
-      {"garminGUID", :garmin_guid} => nullable(str()),
-      field(:id) => int(),
-      field(:level_is_viewed) => bool(),
-      field(:level_point_threshold) => int(),
-      field(:level_update_date) => str(),
-      field(:location) => nullable(str()),
-      field(:make_golf_scorecards_private) => bool(),
-      field(:motivation) => nullable(int()),
-      field(:name_approved) => bool(),
-      field(:other_activity) => nullable(str()),
-      field(:other_motivation) => nullable(str()),
-      field(:other_primary_activity) => nullable(str()),
-      field(:personal_website) => nullable(str()),
-      field(:primary_activity) => nullable(str()),
-      field(:profile_id) => int(),
-      field(:profile_image_url_large) => nullable(str()),
-      field(:profile_image_url_medium) => nullable(str()),
-      field(:profile_image_url_small) => nullable(str()),
-      field(:profile_visibility) => str(),
-      field(:running_training_speed) => float(),
-      field(:show_activity_class) => bool(),
-      field(:show_age) => bool(),
-      field(:show_age_range) => bool(),
-      field(:show_badges) => bool(),
-      field(:show_gender) => bool(),
-      field(:show_height) => bool(),
-      field(:show_last_12_months) => bool(),
-      field(:show_lifetime_totals) => bool(),
-      field(:show_personal_records) => bool(),
-      field(:show_recent_device) => bool(),
-      field(:show_recent_favorites) => bool(),
-      field(:show_recent_gear) => bool(),
-      field(:show_upcoming_events) => bool(),
-      {"showVO2Max", :show_vo_2_max} => bool(),
-      field(:show_weight) => bool(),
-      field(:show_weight_class) => bool(),
-      field(:swimming_training_speed) => float(),
-      field(:twitter_url) => nullable(str()),
-      field(:user_level) => int(),
-      field(:user_name) => str(),
-      field(:user_point) => int(),
-      field(:user_point_offset) => int(),
-      field(:user_pro) => bool(),
-      field(:user_profile_full_name) => str(),
-      field(:user_roles) => list(str())
-    })
+  schematic_struct do
+    field(:id, integer())
+    field(:profile_id, integer())
+    field(:garmin_guid, String.t(), json: "garminGUID", nullable: true)
+    field(:display_name, String.t())
+    field(:full_name, String.t())
+    field(:user_name, String.t())
+    field(:profile_image_url_large, String.t(), nullable: true)
+    field(:profile_image_url_medium, String.t(), nullable: true)
+    field(:profile_image_url_small, String.t(), nullable: true)
+    field(:location, String.t(), nullable: true)
+    field(:facebook_url, String.t(), nullable: true)
+    field(:twitter_url, String.t(), nullable: true)
+    field(:personal_website, String.t(), nullable: true)
+    field(:motivation, integer(), nullable: true)
+    field(:bio, String.t(), nullable: true)
+    field(:primary_activity, String.t(), nullable: true)
+    field(:favorite_activity_types, list(String.t()))
+    field(:running_training_speed, float())
+    field(:cycling_training_speed, float())
+    field(:favorite_cycling_activity_types, list(String.t()))
+    field(:cycling_classification, String.t(), nullable: true)
+    field(:cycling_max_avg_power, float())
+    field(:swimming_training_speed, float())
+    field(:profile_visibility, String.t())
+    field(:activity_start_visibility, String.t())
+    field(:activity_map_visibility, String.t())
+    field(:course_visibility, String.t())
+    field(:activity_heart_rate_visibility, String.t())
+    field(:activity_power_visibility, String.t())
+    field(:badge_visibility, String.t())
+    field(:show_age, boolean())
+    field(:show_weight, boolean())
+    field(:show_height, boolean())
+    field(:show_weight_class, boolean())
+    field(:show_age_range, boolean())
+    field(:show_gender, boolean())
+    field(:show_activity_class, boolean())
+    field(:show_vo_2_max, boolean(), json: "showVO2Max")
+    field(:show_personal_records, boolean())
+    field(:show_last_12_months, boolean())
+    field(:show_lifetime_totals, boolean())
+    field(:show_upcoming_events, boolean())
+    field(:show_recent_favorites, boolean())
+    field(:show_recent_device, boolean())
+    field(:show_recent_gear, boolean())
+    field(:show_badges, boolean())
+    field(:other_activity, String.t(), nullable: true)
+    field(:other_primary_activity, String.t(), nullable: true)
+    field(:other_motivation, String.t(), nullable: true)
+    field(:user_roles, list(String.t()))
+    field(:name_approved, boolean())
+    field(:user_profile_full_name, String.t())
+    field(:make_golf_scorecards_private, boolean())
+    field(:allow_golf_live_scoring, boolean())
+    field(:allow_golf_scoring_by_connections, boolean())
+    field(:user_level, integer())
+    field(:user_point, integer())
+    field(:level_update_date, String.t())
+    field(:level_is_viewed, boolean())
+    field(:level_point_threshold, integer())
+    field(:user_point_offset, integer())
+    field(:user_pro, boolean())
   end
 end

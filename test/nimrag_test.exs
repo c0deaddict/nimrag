@@ -38,6 +38,14 @@ defmodule NimragTest do
     assert {:ok, _user_settings, _client} = Nimrag.user_settings(client())
   end
 
+  test "#user_summary" do
+    Req.Test.stub(Nimrag.Api, fn conn ->
+      Req.Test.json(conn, read_response_fixture(conn))
+    end)
+
+    assert {:ok, _user_summary, _client} = Nimrag.user_summary(client(), ~D[2025-05-06])
+  end
+
   test "#steps_weekly" do
     Req.Test.stub(Nimrag.Api, fn conn ->
       Req.Test.json(conn, read_response_fixture(conn))
