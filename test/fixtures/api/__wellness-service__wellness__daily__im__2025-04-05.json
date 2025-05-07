@@ -1,0 +1,22 @@
+{
+  "calendarDate": "2025-04-05",
+  "dayOfGoalMet": "Fri",
+  "endDayMinutes": 189,
+  "endTimestampGMT": "2025-04-05T22:00:00.0",
+  "endTimestampLocal": "2025-04-06T00:00:00.0",
+  "imValueDescriptorsDTOList": [
+    {"index": 0, "key": "timestamp"},
+    {"index": 1, "key": "value"}
+  ],
+  "imValuesArray": [[1746260999999, 17]],
+  "moderateMinutes": 0,
+  "startDayMinutes": 189,
+  "startTimestampGMT": "2025-04-04T22:00:00.0",
+  "startTimestampLocal": "2025-04-05T00:00:00.0",
+  "userProfilePK": 771125128,
+  "vigorousMinutes": 0,
+  "weekGoal": 150,
+  "weeklyModerate": 37,
+  "weeklyTotal": 189,
+  "weeklyVigorous": 76
+}

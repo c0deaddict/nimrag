@@ -243,7 +243,7 @@ defmodule Nimrag do
   @doc """
   Returns Heart Rate Variability (HRV) data for current user.
   """
-  @spec user_settings(Client.t()) :: {:ok, Api.UserSettings.t(), Client.t()} | error()
+  @spec hrv(Client.t()) :: {:ok, Api.HRV.t(), Client.t()} | error()
   def hrv(client, date \\ Date.utc_today()),
     do: client |> hrv_req(date) |> response_as_data(Api.HRV)
 
@@ -251,6 +251,20 @@ defmodule Nimrag do
     do:
       get(client,
         url: "/hrv-service/hrv/:date",
+        path_params: [date: Date.to_iso8601(date)]
+      )
+
+  @doc """
+  Returns Heart Rate Variability (HRV) data for current user.
+  """
+  @spec user_settings(Client.t()) :: {:ok, Api.IntensityMinutesDaily.t(), Client.t()} | error()
+  def intensity_minutes_daily(client, date \\ Date.utc_today()),
+    do: client |> intensity_minutes_daily_req(date) |> response_as_data(Api.IntensityMinutesDaily)
+
+  def intensity_minutes_daily_req(client, date),
+    do:
+      get(client,
+        url: "/wellness-service/wellness/daily/im/:date",
         path_params: [date: Date.to_iso8601(date)]
       )
 end

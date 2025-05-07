@@ -92,4 +92,12 @@ defmodule NimragTest do
 
     assert {:ok, %Nimrag.Api.HRV{}, _client} = Nimrag.hrv(client(), ~D[2025-03-28])
   end
+
+  test "#intensity_minutes_daily" do
+    Req.Test.stub(Nimrag.Api, fn conn ->
+      Req.Test.json(conn, read_response_fixture(conn))
+    end)
+
+    assert {:ok, %Nimrag.Api.IntensityMinutesDaily{}, _client} = Nimrag.intensity_minutes_daily(client(), ~D[2025-04-05])
+  end
 end
