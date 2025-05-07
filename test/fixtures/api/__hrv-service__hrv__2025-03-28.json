@@ -1,0 +1,43 @@
+{
+  "endTimestampGMT": "2025-03-28T06:58:04.0",
+  "endTimestampLocal": "2025-03-28T07:58:04.0",
+  "hrvReadings": [
+    {
+      "hrvValue": 39,
+      "readingTimeGMT": "2025-03-27T22:28:04.0",
+      "readingTimeLocal": "2025-03-27T23:28:04.0"
+    },
+    {
+      "hrvValue": 34,
+      "readingTimeGMT": "2025-03-27T22:33:04.0",
+      "readingTimeLocal": "2025-03-27T23:33:04.0"
+    },
+    {
+      "hrvValue": 26,
+      "readingTimeGMT": "2025-03-27T22:38:04.0",
+      "readingTimeLocal": "2025-03-27T23:38:04.0"
+    }
+  ],
+  "hrvSummary": {
+    "baseline": {
+      "balancedLow": 37,
+      "balancedUpper": 53,
+      "lowUpper": 34,
+      "markerValue": 0.3125
+    },
+    "calendarDate": "2025-03-28",
+    "createTimeStamp": "2025-03-28T06:59:48.859",
+    "feedbackPhrase": "HRV_BALANCED_2",
+    "lastNight5MinHigh": 60,
+    "lastNightAvg": 38,
+    "status": "BALANCED",
+    "weeklyAvg": 39
+  },
+  "sleepEndTimestampGMT": "2025-03-28T06:59:08.0",
+  "sleepEndTimestampLocal": "2025-03-28T07:59:08.0",
+  "sleepStartTimestampGMT": "2025-03-27T22:26:00.0",
+  "sleepStartTimestampLocal": "2025-03-27T23:26:00.0",
+  "startTimestampGMT": "2025-03-27T22:26:00.0",
+  "startTimestampLocal": "2025-03-27T23:26:00.0",
+  "userProfilePk": 771125128
+}

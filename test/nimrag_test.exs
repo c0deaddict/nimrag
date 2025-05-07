@@ -84,4 +84,12 @@ defmodule NimragTest do
     assert {:ok, %Nimrag.Api.ActivityDetails{}, _client} =
              Nimrag.activity_details(client(), 15_205_844_761)
   end
+
+  test "#hrv" do
+    Req.Test.stub(Nimrag.Api, fn conn ->
+      Req.Test.json(conn, read_response_fixture(conn))
+    end)
+
+    assert {:ok, %Nimrag.Api.HRV{}, _client} = Nimrag.hrv(client(), ~D[2025-03-28])
+  end
 end
