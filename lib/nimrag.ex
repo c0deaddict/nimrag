@@ -234,7 +234,7 @@ defmodule Nimrag do
 
   def sleep_daily_req(client, username, date \\ Date.utc_today(), buffer_minutes \\ 60) do
     get(client,
-      url: "wellness-service/wellness/dailySleepData/:username",
+      url: "/wellness-service/wellness/dailySleepData/:username",
       params: [nonSleepBufferMinutes: buffer_minutes, date: Date.to_iso8601(date)],
       path_params: [username: username]
     )
@@ -244,6 +244,7 @@ defmodule Nimrag do
   Returns Heart Rate Variability (HRV) data for current user.
   """
   @spec hrv(Client.t()) :: {:ok, Api.HRV.t(), Client.t()} | error()
+  @spec hrv(Client.t(), date :: Date.t()) :: {:ok, Api.HRV.t(), Client.t()} | error()
   def hrv(client, date \\ Date.utc_today()),
     do: client |> hrv_req(date) |> response_as_data(Api.HRV)
 
@@ -257,7 +258,10 @@ defmodule Nimrag do
   @doc """
   Returns Heart Rate Variability (HRV) data for current user.
   """
-  @spec user_settings(Client.t()) :: {:ok, Api.IntensityMinutesDaily.t(), Client.t()} | error()
+  @spec intensity_minutes_daily(Client.t()) ::
+          {:ok, Api.IntensityMinutesDaily.t(), Client.t()} | error()
+  @spec intensity_minutes_daily(Client.t(), date :: Date.t()) ::
+          {:ok, Api.IntensityMinutesDaily.t(), Client.t()} | error()
   def intensity_minutes_daily(client, date \\ Date.utc_today()),
     do: client |> intensity_minutes_daily_req(date) |> response_as_data(Api.IntensityMinutesDaily)
 
@@ -267,4 +271,14 @@ defmodule Nimrag do
         url: "/wellness-service/wellness/daily/im/:date",
         path_params: [date: Date.to_iso8601(date)]
       )
+
+  @doc """
+  Return available devices for the current user account.
+  """
+  @spec devices(Client.t()) ::
+          {:ok, [Api.Device.t()], Client.t()} | error()
+  def devices(client),
+    do: client |> devices_req() |> response_as_data(Api.Device)
+
+  def devices_req(client), do: get(client, url: "/device-service/deviceregistration/devices")
 end
