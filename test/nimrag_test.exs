@@ -66,4 +66,8 @@ defmodule NimragTest do
   test "#devices" do
     assert {:ok, _devices, _client} = Nimrag.devices(client())
   end
+
+  test "#device_settings" do
+    assert {:ok, _devices, _client} = Nimrag.device_settings(client(), 123_456_789)
+  end
 end

@@ -1,0 +1,314 @@
+{
+  "hikingFormat": null,
+  "smartNotificationsSound": "VIBRATION",
+  "cardioFormat": null,
+  "supportedAudioPromptDialects": null,
+  "supportedScreenModes": null,
+  "soundVibrationEnabled": true,
+  "controlsMenuList": [
+    {
+      "id": "BAROMETER",
+      "index": 7,
+      "required": null
+    },
+    {
+      "id": "COMPASS",
+      "index": 8,
+      "required": null
+    },
+    {
+      "id": "FLASHLIGHT",
+      "index": 9,
+      "required": null
+    },
+    {
+      "id": "BLUETOOTH",
+      "index": 10,
+      "required": null
+    }
+  ],
+  "dataRecording": null,
+  "supportedWatchFaceColors": null,
+  "intensityMinutesCalcMethod": "HR_ZONES",
+  "xcSkiFormat": null,
+  "audioPromptHeartRateType": "HEART_RATE",
+  "customMeasurementDate": null,
+  "audioPromptPowerDuration": null,
+  "otherFormat": null,
+  "moderateIntensityMinutesHrZone": 3,
+  "customBodyFatPercent": null,
+  "screenMode": null,
+  "avatar": null,
+  "autoSyncStepsBeforeSync": 2000,
+  "blueToothEnabled": null,
+  "smartNotificationsStatus": "SHOW_ALL",
+  "cyclingFormat": null,
+  "backlightMode": null,
+  "disableLastEnabledScreen": null,
+  "audioPromptPowerEnabled": null,
+  "isVivohubEnabled": null,
+  "audioPromptPowerType": null,
+  "liveEventSharingEndTimestamp": null,
+  "opticalHeartRateEnabled": true,
+  "keyVibrationEnabled": false,
+  "bleConnectionAlertEnabled": false,
+  "dndEnabled": true,
+  "supportedBacklightTimeouts": null,
+  "relaxRemindersEnabled": null,
+  "liveEventSharingMsgTriggers": [
+    "EVERY_LAP",
+    "END",
+    "START"
+  ],
+  "connectIQ": {
+    "autoUpdate": true
+  },
+  "startOfWeek": "MONDAY",
+  "duringActivity": {
+    "defaultScreen": null,
+    "phoneNotificationPrivacyMode": null,
+    "screens": null,
+    "smartNotificationsSound": "TONE_AND_VIBRATION",
+    "smartNotificationsStatus": "SHOW_ALL"
+  },
+  "vivohubEnabled": null,
+  "liveTrackEnabled": false,
+  "dateFormat": "date_day_month",
+  "phoneNotificationMode": null,
+  "screenTimeout": null,
+  "paceSpeedUnit": null,
+  "customDeviceMuscleMass": null,
+  "audioPromptSpeedPaceFrequency": "LAP",
+  "audioPromptSpeedPaceType": "AVERAGE",
+  "turnPromptEnabled": null,
+  "distanceUnit": null,
+  "multipleAlarmEnabled": true,
+  "liveEventSharingTriggerDistance": null,
+  "customDeviceBodyFatPercent": null,
+  "supportedWatchFaces": null,
+  "supportedLanguages": [
+    {
+      "id": 0,
+      "name": "en"
+    },
+    {
+      "id": 1,
+      "name": "fr"
+    },
+    {
+      "id": 2,
+      "name": "it"
+    },
+    {
+      "id": 3,
+      "name": "de"
+    },
+    {
+      "id": 4,
+      "name": "es"
+    },
+    {
+      "id": 5,
+      "name": "hr"
+    },
+    {
+      "id": 6,
+      "name": "cs"
+    },
+    {
+      "id": 7,
+      "name": "da"
+    },
+    {
+      "id": 8,
+      "name": "nl"
+    },
+    {
+      "id": 9,
+      "name": "fi"
+    },
+    {
+      "id": 10,
+      "name": "el"
+    },
+    {
+      "id": 11,
+      "name": "hu"
+    },
+    {
+      "id": 12,
+      "name": "no"
+    },
+    {
+      "id": 13,
+      "name": "pl"
+    },
+    {
+      "id": 15,
+      "name": "sk"
+    },
+    {
+      "id": 16,
+      "name": "sl"
+    },
+    {
+      "id": 17,
+      "name": "sv"
+    },
+    {
+      "id": 18,
+      "name": "ru"
+    },
+    {
+      "id": 19,
+      "name": "tr"
+    },
+    {
+      "id": 20,
+      "name": "lv"
+    },
+    {
+      "id": 21,
+      "name": "uk"
+    },
+    {
+      "id": 22,
+      "name": "ar"
+    },
+    {
+      "id": 24,
+      "name": "bg"
+    },
+    {
+      "id": 25,
+      "name": "ro"
+    },
+    {
+      "id": 31,
+      "name": "iw"
+    },
+    {
+      "id": 32,
+      "name": "pt_BR"
+    },
+    {
+      "id": 38,
+      "name": "et"
+    },
+    {
+      "id": 39,
+      "name": "lt"
+    }
+  ],
+  "liveEventSharingEnabled": false,
+  "enabledScreens": {},
+  "customMuscleMass": null,
+  "lactateThresholdAutoDetectEnabled": null,
+  "soundInAppOnlyEnabled": true,
+  "audioPromptDialectType": "EN_US",
+  "supportedColorThemes": null,
+  "mountingSide": "RIGHT",
+  "screenLists": null,
+  "glonassEnabled": null,
+  "weightOnlyModeEnabled": null,
+  "supportedBacklightSettings": [
+    "DURING_ACTIVITY"
+  ],
+  "dbDrivenDefaults": true,
+  "autoUploadEnabled": true,
+  "elevationUnit": null,
+  "customDeviceWeight": null,
+  "audioPromptHeartRateEnabled": false,
+  "measurementUnits": "metric",
+  "backlightWristTurnEnabled": null,
+  "autoActivityDetect": {
+    "autoActivityDetectEnabled": true,
+    "autoActivityStartEnabled": true,
+    "cyclingEnabled": true,
+    "drivingEnabled": true,
+    "ellipticalEnabled": true,
+    "runningEnabled": true,
+    "swimmingEnabled": true,
+    "walkingEnabled": true
+  },
+  "goalAnimation": "NOT_IN_ACTIVITY",
+  "wiFiAutoUploadEnabled": null,
+  "liveEventSharingTargetDistance": null,
+  "audioPromptSpeedPaceEnabled": false,
+  "backlightSetting": null,
+  "deviceId": 123456789,
+  "schoolMode": null,
+  "watchFaceItemList": null,
+  "nickname": null,
+  "colorTheme": null,
+  "screenOrientation": null,
+  "visibleScreens": null,
+  "watchFace": null,
+  "smartNotificationTimeout": null,
+  "audioPromptSpeedPaceDuration": null,
+  "allUnits": "metric",
+  "language": 0,
+  "audioPromptPowerFrequency": null,
+  "backlightKeysAndAlertsEnabled": null,
+  "audioPromptLapEnabled": false,
+  "gestureMode": null,
+  "maxAlarm": 10,
+  "timeFormat": "time_twenty_four_hr",
+  "bandOrientation": null,
+  "displayOrientation": null,
+  "backlightTimeout": null,
+  "customWheelSize": null,
+  "phoneNotificationPrivacyMode": null,
+  "temperatureUnit": null,
+  "keyTonesEnabled": false,
+  "metricsFileTrueupEnabled": true,
+  "autoSyncMinutesBeforeSync": 240,
+  "userNoticeTonesEnabled": null,
+  "audioPromptActivityAlertsEnabled": null,
+  "strengthFormat": null,
+  "multipleSupportedWatchFace": {},
+  "diveAlerts": null,
+  "alarms": [],
+  "phoneVibrationEnabled": null,
+  "liveEventSharingMsgContents": [
+    "CUMULATIVE_TIME",
+    "PACE_SPEED",
+    "LAST_LAP_TIME"
+  ],
+  "defaultPage": null,
+  "weightUnit": null,
+  "segmentPromptEnabled": null,
+  "audioPromptHeartRateDuration": null,
+  "keepUserNamePrivate": null,
+  "sleep": null,
+  "audioPromptHeartRateFrequency": "LAP",
+  "heightUnit": null,
+  "alertTonesEnabled": false,
+  "vigorousIntensityMinutesHrZone": 4,
+  "customUserText": null,
+  "supportedAlarmModes": [
+    "ON",
+    "OFF",
+    "DAILY",
+    "WEEKDAYS",
+    "WEEKENDS"
+  ],
+  "runningFormat": null,
+  "autoSyncFrequency": null,
+  "activityTracking": {
+    "activityTrackingEnabled": true,
+    "bloodEfficiencyAcclimationEnabled": null,
+    "bloodEfficiencySleepTrackingEnabled": null,
+    "highHrAlertEnabled": false,
+    "highHrAlertThreshold": 100,
+    "lowHrAlertEnabled": false,
+    "lowHrAlertThreshold": 40,
+    "lowSpo2AlertEnabled": null,
+    "moveAlertEnabled": false,
+    "moveBarEnabled": null,
+    "pulseOxAcclimationEnabled": false,
+    "pulseOxSleepTrackingEnabled": false,
+    "spo2Threshold": null
+  },
+  "liveEventSharingTriggerTime": null
+}

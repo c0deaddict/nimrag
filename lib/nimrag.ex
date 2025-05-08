@@ -281,4 +281,19 @@ defmodule Nimrag do
     do: client |> devices_req() |> response_as_data(Api.Device)
 
   def devices_req(client), do: get(client, url: "/device-service/deviceregistration/devices")
+
+  @doc """
+  Return device settings for device with 'device_id'.
+  """
+  @spec device_settings(Client.t(), device_id :: String.t()) ::
+          {:ok, Api.DeviceSettings.t(), Client.t()} | error()
+  def device_settings(client, device_id),
+    do: client |> device_settings_req(device_id) |> response_as_data(Api.DeviceSettings)
+
+  def device_settings_req(client, device_id),
+    do:
+      get(client,
+        url: "/device-service/deviceservice/device-info/settings/:device_id",
+        path_params: [device_id: device_id]
+      )
 end
