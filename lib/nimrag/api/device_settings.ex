@@ -48,8 +48,6 @@ defmodule Nimrag.Api.DeviceSettings do
     end
   end
 
-  alias __MODULE__.{SettingsDuringActivity, AutoActivityDetect, ActivityTracking}
-
   schematic_struct do
     field(:hiking_format, any(), nullable: true)
     field(:smart_notifications_sound, String.t(), schema: oneof(["VIBRATION"]))

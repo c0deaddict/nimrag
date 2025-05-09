@@ -26,8 +26,6 @@ defmodule Nimrag.Api.ActivityList do
     end
   end
 
-  alias __MODULE__.SplitSummary
-
   schematic_struct do
     field(:activity_id, integer())
     field(:activity_name, String.t())

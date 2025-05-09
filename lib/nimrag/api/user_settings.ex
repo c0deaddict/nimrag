@@ -87,8 +87,6 @@ defmodule Nimrag.Api.UserSettings do
     end
   end
 
-  alias __MODULE__.{UserData, UserSleep, UserSleepWindow}
-
   schematic_struct do
     field(:id, integer())
     field(:user_data, UserData.t())

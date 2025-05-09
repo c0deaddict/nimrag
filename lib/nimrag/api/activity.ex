@@ -17,14 +17,11 @@ defmodule Nimrag.Api.Activity do
     end
   end
 
-  alias __MODULE__.Summary
-
   schematic_struct do
     field(:activity_id, integer())
     field(:activity_name, String.t())
     field(:activity_type, ActivityType.t(), json: "activityTypeDTO")
     field(:description, String.t(), nullable: true)
-    # TODO: test __MODULE__.Summary.t() breaks
     field(:summary, Summary.t(), json: "summaryDTO")
   end
 end

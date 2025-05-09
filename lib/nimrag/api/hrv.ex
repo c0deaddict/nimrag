@@ -41,8 +41,6 @@ defmodule Nimrag.Api.HRV do
     end
   end
 
-  alias __MODULE__.{HRVReading, HRVSummary}
-
   schematic_struct do
     field(:end_at, DateTime.t(), json: "endTimestampGMT", schema: gmt_datetime_as_datetime())
     field(:end_local_at, NaiveDateTime.t(), json: "endTimestampLocal", schema: naive_datetime())

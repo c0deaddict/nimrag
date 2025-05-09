@@ -1,5 +1,4 @@
 defmodule Nimrag.Api.SleepDaily do
-  alias Nimrag.Api.SleepDaily.WellnessEpochRespirationData
   use Nimrag.Api.Data
 
   defmodule Sleep do
@@ -116,18 +115,6 @@ defmodule Nimrag.Api.SleepDaily do
       field(:respiration_value, float())
     end
   end
-
-  alias __MODULE__.{
-    Sleep,
-    SleepMovement,
-    SleepStress,
-    HRVData,
-    SleepBodyBattery,
-    SleepLevel,
-    SleepHeartRate,
-    WellnessEpochRespirationAverage,
-    WellnessEpochRespirationData
-  }
 
   schematic_struct do
     field(:avg_overnight_hrv, float(), nullable: true)
