@@ -55,7 +55,7 @@ defmodule Nimrag.Api.ActivityList do
     field(:begin_timestamp, DateTime.t(), schema: timestamp_as_datetime())
     field(:bmr_calories, float(), nullable: true)
     field(:calories, float())
-    field(:deco_dive, boolean())
+    field(:deco_dive, boolean(), nullable: true)
     field(:description, String.t(), nullable: true)
     field(:device_id, integer())
     field(:distance, float())
