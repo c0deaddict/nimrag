@@ -19,7 +19,16 @@ defmodule Nimrag.Api.ActivityList do
       field(:num_falls, integer())
 
       field(:split_type, String.t(),
-        schema: oneof(["RWD_STAND", "RWD_RUN", "RWD_WALK", "INTERVAL_ACTIVE", "INTERVAL_WARMUP", "INTERVAL_COOLDOWN"])
+        schema:
+          oneof([
+            "RWD_STAND",
+            "RWD_RUN",
+            "RWD_WALK",
+            "INTERVAL_ACTIVE",
+            "INTERVAL_WARMUP",
+            "INTERVAL_COOLDOWN",
+            "INTERVAL_RECOVERY"
+          ])
       )
 
       field(:total_ascent, float())
@@ -29,22 +38,22 @@ defmodule Nimrag.Api.ActivityList do
   schematic_struct do
     field(:activity_id, integer())
     field(:activity_name, String.t())
-    field(:activity_training_load, float())
+    field(:activity_training_load, float(), nullable: true)
     field(:activity_type, ActivityType.t())
-    field(:aerobic_training_effect, float())
-    field(:aerobic_training_effect_message, String.t())
-    field(:anaerobic_training_effect, float())
-    field(:anaerobic_training_effect_message, String.t())
+    field(:aerobic_training_effect, float(), nullable: true)
+    field(:aerobic_training_effect_message, String.t(), nullable: true)
+    field(:anaerobic_training_effect, float(), nullable: true)
+    field(:anaerobic_training_effect_message, String.t(), nullable: true)
     field(:atp_activity, boolean())
     field(:auto_calc_calories, boolean())
     field(:average_hr, float(), nullable: true, json: "averageHR")
-    field(:average_running_cadence_in_steps_per_minute, float())
+    field(:average_running_cadence_in_steps_per_minute, float(), nullable: true)
     field(:average_speed, float())
     field(:avg_grade_adjusted_speed, float(), nullable: true)
     field(:avg_power, float(), nullable: true)
-    field(:avg_stride_length, float())
+    field(:avg_stride_length, float(), nullable: true)
     field(:begin_timestamp, DateTime.t(), schema: timestamp_as_datetime())
-    field(:bmr_calories, float())
+    field(:bmr_calories, float(), nullable: true)
     field(:calories, float())
     field(:deco_dive, boolean())
     field(:description, String.t(), nullable: true)
@@ -90,15 +99,15 @@ defmodule Nimrag.Api.ActivityList do
     field(:location_name, String.t(), nullable: true)
     field(:manual_activity, boolean())
     field(:manufacturer, String.t())
-    field(:max_double_cadence, float())
-    field(:max_elevation, float())
+    field(:max_double_cadence, float(), nullable: true)
+    field(:max_elevation, float(), nullable: true)
     field(:max_hr, float(), nullable: true, json: "maxHR")
     field(:max_power, float(), nullable: true)
-    field(:max_running_cadence_in_steps_per_minute, float())
-    field(:max_speed, float())
-    field(:max_vertical_speed, float())
+    field(:max_running_cadence_in_steps_per_minute, float(), nullable: true)
+    field(:max_speed, float(), nullable: true)
+    field(:max_vertical_speed, float(), nullable: true)
     field(:min_activity_lap_duration, float())
-    field(:min_elevation, float())
+    field(:min_elevation, float(), nullable: true)
     field(:moderate_intensity_minutes, integer(), nullable: true)
     field(:moving_duration, float())
     field(:norm_power, float(), nullable: true)
@@ -131,11 +140,11 @@ defmodule Nimrag.Api.ActivityList do
     field(:steps, integer(), nullable: true)
     field(:summarized_dive_info, any())
     field(:time_zone_id, integer())
-    field(:training_effect_label, String.t())
+    field(:training_effect_label, String.t(), nullable: true)
     field(:user_pro, boolean())
     field(:user_roles, [String.t()])
-    field(:vo2_max_value, float(), json: "vO2MaxValue")
+    field(:vo2_max_value, float(), json: "vO2MaxValue", nullable: true)
     field(:vigorous_intensity_minutes, integer(), nullable: true)
-    field(:water_estimated, float())
+    field(:water_estimated, float(), nullable: true)
   end
 end
