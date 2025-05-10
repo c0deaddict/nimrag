@@ -134,7 +134,7 @@ defmodule Nimrag.Api.ActivityList do
     field(:training_effect_label, String.t())
     field(:user_pro, boolean())
     field(:user_roles, [String.t()])
-    field(:v_o2_max_value, float())
+    field(:vo2_max_value, float(), json: "vO2MaxValue")
     field(:vigorous_intensity_minutes, integer(), nullable: true)
     field(:water_estimated, float())
   end
