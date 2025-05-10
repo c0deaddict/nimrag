@@ -14,12 +14,12 @@ defmodule Nimrag.Api.ActivityList do
       field(:max_distance, integer())
       field(:max_elevation_gain, float())
       field(:max_speed, float())
-      field(:no_of_splits, integer())
+      field(:no_of_splits, integer(), nullable: true)
       field(:num_climb_sends, integer())
       field(:num_falls, integer())
 
       field(:split_type, String.t(),
-        schema: oneof(["RWD_STAND", "RWD_RUN", "RWD_WALK", "INTERVAL_ACTIVE"])
+        schema: oneof(["RWD_STAND", "RWD_RUN", "RWD_WALK", "INTERVAL_ACTIVE", "INTERVAL_WARMUP", "INTERVAL_COOLDOWN"])
       )
 
       field(:total_ascent, float())
