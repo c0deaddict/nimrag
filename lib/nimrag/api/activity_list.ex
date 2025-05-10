@@ -106,7 +106,7 @@ defmodule Nimrag.Api.ActivityList do
     field(:max_running_cadence_in_steps_per_minute, float(), nullable: true)
     field(:max_speed, float(), nullable: true)
     field(:max_vertical_speed, float(), nullable: true)
-    field(:min_activity_lap_duration, float())
+    field(:min_activity_lap_duration, float(), nullable: true)
     field(:min_elevation, float(), nullable: true)
     field(:moderate_intensity_minutes, integer(), nullable: true)
     field(:moving_duration, float(), nullable: true)
