@@ -109,7 +109,7 @@ defmodule Nimrag.Api.ActivityList do
     field(:min_activity_lap_duration, float())
     field(:min_elevation, float(), nullable: true)
     field(:moderate_intensity_minutes, integer(), nullable: true)
-    field(:moving_duration, float())
+    field(:moving_duration, float(), nullable: true)
     field(:norm_power, float(), nullable: true)
     field(:owner_display_name, String.t())
     field(:owner_full_name, String.t())
