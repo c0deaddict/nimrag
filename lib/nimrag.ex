@@ -168,7 +168,6 @@ defmodule Nimrag do
   {:ok, records} = data |> ExtFit.Decode.decode()
   ```
   """
-
   @spec download_activity(Client.t(), activity_id :: integer(), :raw) ::
           {:ok, binary(), Client.t()} | error()
   @spec download_activity(Client.t(), activity_id :: integer(), :tcx) ::
@@ -295,5 +294,22 @@ defmodule Nimrag do
       get(client,
         url: "/device-service/deviceservice/device-info/settings/:device_id",
         path_params: [device_id: device_id]
+      )
+
+  @doc """
+  Return training readiness data for current user.
+  """
+  @spec training_readiness(Client.t()) ::
+          {:ok, Api.TrainingReadiness.t(), Client.t()} | error()
+  @spec training_readiness(Client.t(), date :: Date.t()) ::
+          {:ok, Api.TrainingReadiness.t(), Client.t()} | error()
+  def training_readiness(client, date \\ Date.utc_today()),
+    do: client |> training_readiness_req(date) |> response_as_data(Api.TrainingReadiness)
+
+  def training_readiness_req(client, date),
+    do:
+      get(client,
+        url: "/metrics-service/metrics/trainingreadiness/:date",
+        path_params: [date: Date.to_iso8601(date)]
       )
 end

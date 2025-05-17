@@ -1,0 +1,33 @@
+[
+  {
+    "acuteLoad": 221,
+    "acwrFactorFeedback": "GOOD",
+    "acwrFactorPercent": 91,
+    "calendarDate": "2025-05-10",
+    "deviceId": 123456789,
+    "feedbackLong": "HIGH_RT_HIGHEST_SS_AVAILABLE",
+    "feedbackShort": "WELL_RECOVERED",
+    "hrvFactorFeedback": "VERY_GOOD",
+    "hrvFactorPercent": 100,
+    "hrvWeeklyAverage": 42,
+    "inputContext": null,
+    "level": "HIGH",
+    "primaryActivityTracker": true,
+    "recoveryTime": 1,
+    "recoveryTimeChangePhrase": "NO_CHANGE_SLEEP",
+    "recoveryTimeFactorFeedback": "GOOD",
+    "recoveryTimeFactorPercent": 99,
+    "score": 84,
+    "sleepHistoryFactorFeedback": "GOOD",
+    "sleepHistoryFactorPercent": 87,
+    "sleepScore": 81,
+    "sleepScoreFactorFeedback": "GOOD",
+    "sleepScoreFactorPercent": 72,
+    "stressHistoryFactorFeedback": "GOOD",
+    "stressHistoryFactorPercent": 100,
+    "timestamp": "2025-05-10T05:10:29.0",
+    "timestampLocal": "2025-05-10T07:10:29.0",
+    "userProfilePK": 123,
+    "validSleep": true
+  }
+]
