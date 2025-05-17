@@ -16,7 +16,6 @@ defmodule Nimrag.Api do
   OAuth2 token may get refreshed automatically if expired. This is why all responses
   return `{:ok, %Req.Response{}, client}` or `{:error, %Req.Response{}}`.
   """
-
   @spec get(Client.t(), Keyword.t()) ::
           {:ok, Req.Response.t(), Client.t()} | {:error, Req.Response.t()}
   def get(%Client{} = client, opts) do
@@ -118,7 +117,7 @@ defmodule Nimrag.Api do
             req
 
           {:deny, limit} ->
-            {Req.Request.halt(req, RuntimeError.exception("rate limit")), {:rate_limit, limit}}
+            Req.Request.halt(req, %Nimrag.RateLimitError{rate_limit: limit})
         end
 
       false ->

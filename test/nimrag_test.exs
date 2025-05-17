@@ -70,4 +70,9 @@ defmodule NimragTest do
   test "#device_settings" do
     assert {:ok, _devices, _client} = Nimrag.device_settings(client(), 123_456_789)
   end
+
+  test "rate limit" do
+    client = %{client() | rate_limit: [scale_ms: 1_000, limit: 0]}
+    assert {:error, %Nimrag.RateLimitError{}} = Nimrag.user_settings(client)
+  end
 end
