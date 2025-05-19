@@ -240,7 +240,7 @@ defmodule Nimrag do
   end
 
   @doc """
-  Returns Heart Rate Variability (HRV) data for current user.
+  Get Heart Rate Variability (HRV) data for current user.
   """
   @spec hrv(Client.t()) :: {:ok, Api.HRV.t(), Client.t()} | error()
   @spec hrv(Client.t(), date :: Date.t()) :: {:ok, Api.HRV.t(), Client.t()} | error()
@@ -255,7 +255,7 @@ defmodule Nimrag do
       )
 
   @doc """
-  Returns Heart Rate Variability (HRV) data for current user.
+  Get intensity minutes data for current user.
   """
   @spec intensity_minutes_daily(Client.t()) ::
           {:ok, Api.IntensityMinutesDaily.t(), Client.t()} | error()
@@ -272,7 +272,7 @@ defmodule Nimrag do
       )
 
   @doc """
-  Return available devices for the current user account.
+  Get available devices for the current user account.
   """
   @spec devices(Client.t()) ::
           {:ok, [Api.Device.t()], Client.t()} | error()
@@ -282,7 +282,7 @@ defmodule Nimrag do
   def devices_req(client), do: get(client, url: "/device-service/deviceregistration/devices")
 
   @doc """
-  Return device settings for device with 'device_id'.
+  Get device settings for device with 'device_id'.
   """
   @spec device_settings(Client.t(), device_id :: String.t()) ::
           {:ok, Api.DeviceSettings.t(), Client.t()} | error()
@@ -297,7 +297,7 @@ defmodule Nimrag do
       )
 
   @doc """
-  Return training readiness data for current user.
+  Get training readiness data for a given day.
   """
   @spec training_readiness(Client.t()) ::
           {:ok, Api.TrainingReadiness.t(), Client.t()} | error()
@@ -310,6 +310,23 @@ defmodule Nimrag do
     do:
       get(client,
         url: "/metrics-service/metrics/trainingreadiness/:date",
+        path_params: [date: Date.to_iso8601(date)]
+      )
+
+  @doc """
+  Get training status data for a given day.
+  """
+  @spec training_status(Client.t()) ::
+          {:ok, Api.TrainingStatus.t(), Client.t()} | error()
+  @spec training_status(Client.t(), date :: Date.t()) ::
+          {:ok, Api.TrainingStatus.t(), Client.t()} | error()
+  def training_status(client, date \\ Date.utc_today()),
+    do: client |> training_status_req(date) |> response_as_data(Api.TrainingStatus)
+
+  def training_status_req(client, date),
+    do:
+      get(client,
+        url: "/metrics-service/metrics/trainingstatus/aggregated/:date",
         path_params: [date: Date.to_iso8601(date)]
       )
 end

@@ -11,6 +11,11 @@ defmodule NimragTest do
     end)
   end
 
+  test "rate limit" do
+    client = %{client() | rate_limit: [scale_ms: 1_000, limit: 0]}
+    assert {:error, %Nimrag.RateLimitError{}} = Nimrag.user_settings(client)
+  end
+
   test "#profile" do
     assert {:ok, _profile, _client} = Nimrag.profile(client())
   end
@@ -72,11 +77,10 @@ defmodule NimragTest do
   end
 
   test "#training_readiness" do
-    assert {:ok, _training_readiness, _client} = Nimrag.training_readiness(client(), ~D[2025-05-10])
+    assert {:ok, _readiness, _client} = Nimrag.training_readiness(client(), ~D[2025-05-10])
   end
 
-  test "rate limit" do
-    client = %{client() | rate_limit: [scale_ms: 1_000, limit: 0]}
-    assert {:error, %Nimrag.RateLimitError{}} = Nimrag.user_settings(client)
+  test "#training_status" do
+    assert {:ok, _status, _client} = Nimrag.training_status(client(), ~D[2025-05-10])
   end
 end
