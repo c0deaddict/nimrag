@@ -5,12 +5,14 @@ defmodule Nimrag.Api.Data do
 
   # Helper module for transforming API responses into proper structs
   # Uses https://github.com/mhanberg/schematic and adds
-
   defmacro __using__(_) do
     quote do
       import Nimrag.Api.Data
       import Schematic
-      use SchematicStruct
+
+      use SchematicStruct,
+        transform: &unquote(__MODULE__).field/1,
+        type_match: fn type -> raise "undefined type in schematic_struct: \#{inspect(type)}" end
 
       alias Nimrag.Api
 
@@ -163,9 +165,5 @@ defmodule Nimrag.Api.Data do
         "SUNDAY"
       ])
 
-  def field(field) when is_atom(field),
-    do: {
-      field |> to_string() |> Recase.to_camel(),
-      field
-    }
+  def field(field) when is_atom(field), do: field |> to_string() |> Recase.to_camel()
 end
