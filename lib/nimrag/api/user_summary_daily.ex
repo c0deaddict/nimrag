@@ -52,7 +52,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
     )
 
     field(:latest_respiration_value, float(), nullable: true)
-    field(:latest_spo2, float(), nullable: true)
+    field(:latest_spo2, integer(), nullable: true)
 
     field(:latest_spo2_reading_time_gmt, DateTime.t(),
       nullable: true,
@@ -67,7 +67,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
     field(:low_stress_duration, integer())
     field(:low_stress_percentage, float())
     field(:lowest_respiration_value, float(), nullable: true)
-    field(:lowest_spo2, float(), nullable: true)
+    field(:lowest_spo2, integer(), nullable: true)
     field(:max_avg_heart_rate, integer())
     field(:max_heart_rate, integer())
     field(:max_stress_level, integer())
