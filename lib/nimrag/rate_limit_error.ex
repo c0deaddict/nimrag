@@ -1,5 +1,5 @@
 defmodule Nimrag.RateLimitError do
-  defexception [:rate_limit]
+  defexception [:wait]
 
   def message(_) do
     "rate limit hit"

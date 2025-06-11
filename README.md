@@ -92,11 +92,7 @@ PR with new structs and endpoints, see [Contributing](#contributing).
 ### Rate limit
 
 By default, Nimrag uses [Hammer](https://github.com/ExHammer/hammer) for rate limiting requests.
-If you are already using `Hammer`, you can configure backend key via config.
-
-```elixir
-config :nimrag, hammer: [backend: :custom]
-```
+The default rate limiter is in a module named `Nimrag.RateLimit`. You need to add this module to your application's Supervisor.
 
 By default, Hammer's ETS based backend will be started.
 

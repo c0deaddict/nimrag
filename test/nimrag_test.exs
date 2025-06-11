@@ -11,9 +11,25 @@ defmodule NimragTest do
     end)
   end
 
-  test "rate limit" do
-    client = %{client() | rate_limit: [scale_ms: 1_000, limit: 0]}
-    assert {:error, %Nimrag.RateLimitError{}} = Nimrag.user_settings(client)
+  test "default rate limit" do
+    Nimrag.RateLimiter.start_link([])
+
+    client = %{client() | rate_limit: [module: Nimrag.RateLimiter, scale_ms: 5_000, limit: 0]}
+    assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
+    assert wait > 0
+  end
+
+  test "custom rate limit" do
+    defmodule RateLimiter do
+      use Hammer, backend: :atomic
+    end
+
+    RateLimiter.start_link([])
+
+    client = %{client() | rate_limit: [module: RateLimiter, scale_ms: 5_000, limit: 1]}
+    assert {:ok, _user_settings, client} = Nimrag.user_settings(client)
+    assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
+    assert wait > 0
   end
 
   test "#profile" do
@@ -65,7 +81,8 @@ defmodule NimragTest do
   end
 
   test "#intensity_minutes_daily" do
-    assert {:ok, %Nimrag.Api.IntensityMinutesDaily{}, _client} = Nimrag.intensity_minutes_daily(client(), ~D[2025-04-05])
+    assert {:ok, %Nimrag.Api.IntensityMinutesDaily{}, _client} =
+             Nimrag.intensity_minutes_daily(client(), ~D[2025-04-05])
   end
 
   test "#devices" do

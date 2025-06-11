@@ -42,18 +42,6 @@ defmodule Nimrag.MixProject do
   end
 
   def application do
-    if Application.get_env(:hammer, :backend) in [[], nil] do
-      Application.put_env(
-        :hammer,
-        :backend,
-        {Hammer.Backend.ETS,
-         [
-           expiry_ms: 60_000 * 60 * 2,
-           cleanup_interval_ms: 60_000 * 2
-         ]}
-      )
-    end
-
     [
       # mod: {Nimrag.Application, []},
       extra_applications: [:logger]
@@ -72,7 +60,7 @@ defmodule Nimrag.MixProject do
       # {:schematic, "~> 0.3"},
       {:schematic, github: "c0deaddict/schematic", branch: "main", override: true},
       {:schematicstruct, github: "c0deaddict/schematicstruct", branch: "main"},
-      {:hammer, "~> 6.2"},
+      {:hammer, "~> 7.0"},
       {:plug, "~> 1.0", only: [:test]},
       {:excoveralls, "~> 0.18.1", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},

@@ -111,22 +111,20 @@ defmodule Nimrag.Api do
     } = Req.Request.get_private(req, :client)
 
     case rate_limit do
-      [scale_ms: scale_ms, limit: limit] ->
-        case Hammer.check_rate(hammer_backend(), "#{domain}:#{oauth_token}", scale_ms, limit) do
+      [module: module, scale_ms: scale_ms, limit: limit] ->
+        key_prefix = Keyword.get(rate_limit, :key_prefix, "")
+        key = "#{key_prefix}#{domain}:#{oauth_token}"
+
+        case module.hit(key, scale_ms, limit) do
           {:allow, _count} ->
             req
 
-          {:deny, limit} ->
-            Req.Request.halt(req, %Nimrag.RateLimitError{rate_limit: limit})
+          {:deny, wait} ->
+            Req.Request.halt(req, %Nimrag.RateLimitError{wait: wait})
         end
 
       false ->
         req
     end
-  end
-
-  defp hammer_backend do
-    # single is a default
-    Application.get_env(:nimrag, :hammer, backend: :single)[:backend]
   end
 end

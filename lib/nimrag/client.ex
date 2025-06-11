@@ -20,7 +20,7 @@ defmodule Nimrag.Client do
 
   # Options passed to Hammer, there are no official API limits so let's be
   # good citizens! Page load on Garmin dashboard performs over 200 requests
-  @default_rate_limit [scale_ms: 30_000, limit: 60]
+  @default_rate_limit [module: Nimrag.RateLimit, scale_ms: 30_000, limit: 60]
   @connectapi_user_agent "Mozilla/5.0 (Android 14; Mobile; rv:125.0) Gecko/125.0 Firefox/125.0"
 
   @moduledoc """
@@ -53,10 +53,12 @@ defmodule Nimrag.Client do
 
 
   * `:rate_limit` - Rate limit for all requests, see "Rate limit" in the `Nimrag` module,
-    by default it's set to 60 requests every 30 seconds.
+    by default it's set to 60 requests every 30 seconds. The default rate limit is
+    defined in the module `Nimrag.RateLimiter`. This can be override with the `module`
+    key.
 
     ```elixir
-    rate_limit: [scale_ms: 30_000, limit: 10]
+    rate_limit: [module: MyApp.RateLimiter, scale_ms: 30_000, limit: 10]
     ```
 
   """
