@@ -11,25 +11,41 @@ defmodule NimragTest do
     end)
   end
 
-  test "default rate limit" do
-    Nimrag.RateLimiter.start_link([])
+  describe "rate limit" do
+    test "default" do
+      Nimrag.RateLimiter.start_link([])
 
-    client = %{client() | rate_limit: [module: Nimrag.RateLimiter, scale_ms: 5_000, limit: 0]}
-    assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
-    assert wait > 0
-  end
-
-  test "custom rate limit" do
-    defmodule RateLimiter do
-      use Hammer, backend: :atomic
+      client = %{client() | rate_limit: %{module: Nimrag.RateLimiter, scale_ms: 5_000, limit: 0}}
+      assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
+      assert wait > 0
     end
 
-    RateLimiter.start_link([])
+    test "custom" do
+      defmodule RateLimiter do
+        use Hammer, backend: :atomic
+      end
 
-    client = %{client() | rate_limit: [module: RateLimiter, scale_ms: 5_000, limit: 1]}
-    assert {:ok, _user_settings, client} = Nimrag.user_settings(client)
-    assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
-    assert wait > 0
+      RateLimiter.start_link([])
+
+      client = %{client() | rate_limit: %{module: RateLimiter, scale_ms: 5_000, limit: 1}}
+      assert {:ok, _user_settings, client} = Nimrag.user_settings(client)
+      assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
+      assert wait > 0
+    end
+
+    test "custom with key prefix" do
+      defmodule RateLimiter do
+        use Hammer, backend: :atomic
+      end
+
+      RateLimiter.start_link([])
+
+      scale = 5_000
+      client = %{client() | rate_limit: %{module: RateLimiter, scale_ms: scale, limit: 0, key_prefix: "test:"}}
+      assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
+      assert wait > 0
+      assert RateLimiter.get("test:garmin.com:", scale) == 1
+    end
   end
 
   test "#profile" do

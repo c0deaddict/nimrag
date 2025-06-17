@@ -5,7 +5,12 @@ defmodule Nimrag.Client do
           req_options: Keyword.t(),
           oauth1_token: Nimrag.OAuth1Token.t() | nil,
           oauth2_token: Nimrag.OAuth2Token.t() | nil,
-          rate_limit: [scale_ms: integer(), limit: integer()]
+          rate_limit: nil | %{
+            :module => atom(),
+            :scale_ms => integer(),
+            :limit => integer(),
+            optional(:key_prefix) => String.t()
+          }
         }
 
   alias Nimrag.OAuth1Token
@@ -20,7 +25,7 @@ defmodule Nimrag.Client do
 
   # Options passed to Hammer, there are no official API limits so let's be
   # good citizens! Page load on Garmin dashboard performs over 200 requests
-  @default_rate_limit [module: Nimrag.RateLimit, scale_ms: 30_000, limit: 60]
+  @default_rate_limit %{module: Nimrag.RateLimiter, scale_ms: 30_000, limit: 60}
   @connectapi_user_agent "Mozilla/5.0 (Android 14; Mobile; rv:125.0) Gecko/125.0 Firefox/125.0"
 
   @moduledoc """
@@ -58,7 +63,7 @@ defmodule Nimrag.Client do
     key.
 
     ```elixir
-    rate_limit: [module: MyApp.RateLimiter, scale_ms: 30_000, limit: 10]
+    rate_limit: %{module: MyApp.RateLimiter, scale_ms: 30_000, limit: 10}
     ```
 
   """
