@@ -97,7 +97,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
     field(:total_kilocalories, float())
     field(:total_steps, integer())
     field(:total_stress_duration, integer())
-    field(:uncategorized_stress_duration, integer())
+    field(:uncategorized_stress_duration, integer(), nullable: true)
     field(:uncategorized_stress_percentage, float())
     field(:user_daily_summary_id, integer())
     field(:user_floors_ascended_goal, integer())
