@@ -67,7 +67,7 @@ defmodule Nimrag.Api.ActivityList do
     field(:end_latitude, float(), nullable: true)
     field(:end_longitude, float(), nullable: true)
 
-    field(:end_time_gmt, DateTime.t(),
+    field(:end_time, DateTime.t(),
       json: "endTimeGMT",
       schema: gmt_datetime_as_datetime(),
       nullable: true
@@ -135,7 +135,7 @@ defmodule Nimrag.Api.ActivityList do
     field(:sport_type_id, integer())
     field(:start_latitude, float(), nullable: true)
     field(:start_longitude, float(), nullable: true)
-    field(:start_time_gmt, DateTime.t(), json: "startTimeGMT", schema: gmt_datetime_as_datetime())
+    field(:start_time, DateTime.t(), json: "startTimeGMT", schema: gmt_datetime_as_datetime())
     field(:start_time_local, NaiveDateTime.t(), schema: naive_datetime())
     field(:steps, integer(), nullable: true)
     field(:summarized_dive_info, any())

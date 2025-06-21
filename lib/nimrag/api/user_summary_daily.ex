@@ -39,13 +39,13 @@ defmodule Nimrag.Api.UserSummaryDaily do
     field(:intensity_minutes_goal, integer())
     field(:last_seven_days_avg_resting_heart_rate, integer())
 
-    field(:last_sync_timestamp_gmt, DateTime.t(),
+    field(:last_sync_timestamp, DateTime.t(),
       nullable: true,
       json: "lastSyncTimestampGMT",
       schema: gmt_datetime_as_datetime()
     )
 
-    field(:latest_respiration_time_gmt, DateTime.t(),
+    field(:latest_respiration_time, DateTime.t(),
       nullable: true,
       json: "latestRespirationTimeGMT",
       schema: gmt_datetime_as_datetime()
@@ -54,7 +54,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
     field(:latest_respiration_value, float(), nullable: true)
     field(:latest_spo2, integer(), nullable: true)
 
-    field(:latest_spo2_reading_time_gmt, DateTime.t(),
+    field(:latest_spo2_reading_time, DateTime.t(),
       nullable: true,
       schema: gmt_datetime_as_datetime()
     )
@@ -107,10 +107,10 @@ defmodule Nimrag.Api.UserSummaryDaily do
     field(:wellness_active_kilocalories, float())
     field(:wellness_description, String.t(), nullable: true)
     field(:wellness_distance_meters, integer())
-    field(:wellness_end_time_gmt, DateTime.t(), schema: gmt_datetime_as_datetime())
+    field(:wellness_end_time, DateTime.t(), schema: gmt_datetime_as_datetime())
     field(:wellness_end_time_local, NaiveDateTime.t(), schema: naive_datetime())
     field(:wellness_kilocalories, float())
-    field(:wellness_start_time_gmt, DateTime.t(), schema: gmt_datetime_as_datetime())
+    field(:wellness_start_time, DateTime.t(), schema: gmt_datetime_as_datetime())
     field(:wellness_start_time_local, NaiveDateTime.t(), schema: naive_datetime())
   end
 end
