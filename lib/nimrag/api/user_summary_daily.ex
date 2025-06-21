@@ -107,10 +107,10 @@ defmodule Nimrag.Api.UserSummaryDaily do
     field(:wellness_active_kilocalories, float())
     field(:wellness_description, String.t(), nullable: true)
     field(:wellness_distance_meters, integer())
-    field(:wellness_end_time, DateTime.t(), schema: gmt_datetime_as_datetime())
+    field(:wellness_end_time, DateTime.t(), json: "wellnessEndTimeGmt", schema: gmt_datetime_as_datetime())
     field(:wellness_end_time_local, NaiveDateTime.t(), schema: naive_datetime())
     field(:wellness_kilocalories, float())
-    field(:wellness_start_time, DateTime.t(), schema: gmt_datetime_as_datetime())
+    field(:wellness_start_time, DateTime.t(), json: "wellnessStartTimeGmt", schema: gmt_datetime_as_datetime())
     field(:wellness_start_time_local, NaiveDateTime.t(), schema: naive_datetime())
   end
 end
