@@ -5,7 +5,7 @@ defmodule Nimrag.Api.UserSummaryDaily do
     field(:abnormal_heart_rate_alerts_count, integer(), nullable: true)
     field(:active_kilocalories, float())
     field(:active_seconds, integer())
-    field(:activity_stress_duration, integer())
+    field(:activity_stress_duration, integer(), nullable: true)
     field(:activity_stress_percentage, float())
     field(:average_monitoring_environment_altitude, float(), nullable: true)
     field(:average_spo2, integer(), nullable: true)
