@@ -329,4 +329,30 @@ defmodule Nimrag do
         url: "/metrics-service/metrics/trainingstatus/aggregated/:date",
         path_params: [date: Date.to_iso8601(date)]
       )
+
+  @doc """
+  Get weigh ins in date range.
+  """
+  @spec weigh_ins(Client.t()) :: {:ok, Api.WeighIns.t(), Client.t()} | error()
+  @spec weigh_ins(Client.t(), start_date :: Date.t()) ::
+          {:ok, Api.WeighIns.t(), Client.t()} | error()
+  @spec weigh_ins(Client.t(), start_date :: Date.t(), end_date :: Date.t()) ::
+          {:ok, Api.WeighIns.t(), Client.t()} | error()
+  def weigh_ins(client, start_date \\ Date.utc_today(), end_date \\ Date.utc_today()) do
+    if Date.before?(end_date, start_date) do
+      {:error,
+       {:invalid_date_range, "Start date must be eq or earlier than end date.", start_date,
+        end_date}}
+    else
+      client |> weigh_ins_req(start_date, end_date) |> response_as_data(Api.WeighIns)
+    end
+  end
+
+  def weigh_ins_req(client, start_date, end_date),
+    do:
+      get(client,
+        url: "/weight-service/weight/range/:start_date/:end_date",
+        params: [includeAll: true],
+        path_params: [start_date: Date.to_iso8601(start_date), end_date: Date.to_iso8601(end_date)]
+      )
 end

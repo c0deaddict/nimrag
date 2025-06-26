@@ -1,0 +1,135 @@
+{
+  "dailyWeightSummaries": [
+    {
+      "allWeightMetrics": [
+        {
+          "bmi": null,
+          "bodyFat": null,
+          "bodyWater": null,
+          "boneMass": null,
+          "calendarDate": "2025-03-04",
+          "date": 1741075535360,
+          "metabolicAge": null,
+          "muscleMass": null,
+          "physiqueRating": null,
+          "samplePk": 1741071940625,
+          "sourceType": "MANUAL",
+          "timestampGMT": 1741071935360,
+          "visceralFat": null,
+          "weight": 7.06e4,
+          "weightDelta": 899.9999999999915
+        }
+      ],
+      "latestWeight": {
+        "bmi": null,
+        "bodyFat": null,
+        "bodyWater": null,
+        "boneMass": null,
+        "calendarDate": "2025-03-04",
+        "date": 1741075535360,
+        "metabolicAge": null,
+        "muscleMass": null,
+        "physiqueRating": null,
+        "samplePk": 1741071940625,
+        "sourceType": "MANUAL",
+        "timestampGMT": 1741071935360,
+        "visceralFat": null,
+        "weight": 7.06e4,
+        "weightDelta": 899.9999999999915
+      },
+      "maxWeight": 7.06e4,
+      "minWeight": 7.06e4,
+      "numOfWeightEntries": 1,
+      "summaryDate": "2025-03-04"
+    },
+    {
+      "allWeightMetrics": [
+        {
+          "bmi": null,
+          "bodyFat": null,
+          "bodyWater": null,
+          "boneMass": null,
+          "calendarDate": "2025-03-01",
+          "date": 1740820423745,
+          "metabolicAge": null,
+          "muscleMass": null,
+          "physiqueRating": null,
+          "samplePk": 1740816827886,
+          "sourceType": "MANUAL",
+          "timestampGMT": 1740816823745,
+          "visceralFat": null,
+          "weight": 6.97e4,
+          "weightDelta": 200.00000000000284
+        }
+      ],
+      "latestWeight": {
+        "bmi": null,
+        "bodyFat": null,
+        "bodyWater": null,
+        "boneMass": null,
+        "calendarDate": "2025-03-01",
+        "date": 1740820423745,
+        "metabolicAge": null,
+        "muscleMass": null,
+        "physiqueRating": null,
+        "samplePk": 1740816827886,
+        "sourceType": "MANUAL",
+        "timestampGMT": 1740816823745,
+        "visceralFat": null,
+        "weight": 6.97e4,
+        "weightDelta": 200.00000000000284
+      },
+      "maxWeight": 6.97e4,
+      "minWeight": 6.97e4,
+      "numOfWeightEntries": 1,
+      "summaryDate": "2025-03-01"
+    }
+  ],
+  "nextDateWeight": {
+    "bmi": null,
+    "bodyFat": null,
+    "bodyWater": null,
+    "boneMass": null,
+    "calendarDate": "2025-03-10",
+    "date": 1741599554390,
+    "metabolicAge": null,
+    "muscleMass": null,
+    "physiqueRating": null,
+    "samplePk": 1741595958882,
+    "sourceType": "MANUAL",
+    "timestampGMT": 1741595954390,
+    "visceralFat": null,
+    "weight": 6.95e4,
+    "weightDelta": null
+  },
+  "previousDateWeight": {
+    "bmi": null,
+    "bodyFat": null,
+    "bodyWater": null,
+    "boneMass": null,
+    "calendarDate": "2025-02-27",
+    "date": 1740666942517,
+    "metabolicAge": null,
+    "muscleMass": null,
+    "physiqueRating": null,
+    "samplePk": 1740663346728,
+    "sourceType": "MANUAL",
+    "timestampGMT": 1740663342517,
+    "visceralFat": null,
+    "weight": 6.95e4,
+    "weightDelta": null
+  },
+  "totalAverage": {
+    "bmi": null,
+    "bodyFat": null,
+    "bodyWater": null,
+    "boneMass": null,
+    "from": 1740787200000,
+    "metabolicAge": null,
+    "muscleMass": null,
+    "physiqueRating": null,
+    "until": 1741391999999,
+    "visceralFat": null,
+    "weight": 70150.0
+  }
+}

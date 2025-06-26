@@ -21,30 +21,22 @@ defmodule NimragTest do
     end
 
     test "custom" do
-      defmodule RateLimiter do
-        use Hammer, backend: :atomic
-      end
+      CustomRateLimiter.start_link([])
 
-      RateLimiter.start_link([])
-
-      client = %{client() | rate_limit: %{module: RateLimiter, scale_ms: 5_000, limit: 1}}
+      client = %{client() | rate_limit: %{module: CustomRateLimiter, scale_ms: 5_000, limit: 1}}
       assert {:ok, _user_settings, client} = Nimrag.user_settings(client)
       assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
       assert wait > 0
     end
 
     test "custom with key prefix" do
-      defmodule RateLimiter do
-        use Hammer, backend: :atomic
-      end
-
-      RateLimiter.start_link([])
+      CustomRateLimiter.start_link([])
 
       scale = 5_000
-      client = %{client() | rate_limit: %{module: RateLimiter, scale_ms: scale, limit: 0, key_prefix: "test:"}}
+      client = %{client() | rate_limit: %{module: CustomRateLimiter, scale_ms: scale, limit: 0, key_prefix: "test:"}}
       assert {:error, %Nimrag.RateLimitError{wait: wait}} = Nimrag.user_settings(client)
       assert wait > 0
-      assert RateLimiter.get("test:garmin.com:", scale) == 1
+      assert CustomRateLimiter.get("test:garmin.com:", scale) == 1
     end
   end
 
@@ -115,5 +107,9 @@ defmodule NimragTest do
 
   test "#training_status" do
     assert {:ok, _status, _client} = Nimrag.training_status(client(), ~D[2025-05-10])
+  end
+
+  test "#weigh_ins" do
+    assert {:ok, _weigh_ins, _client} = Nimrag.weigh_ins(client(), ~D[2025-03-01], ~D[2025-03-07])
   end
 end
